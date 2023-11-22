@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chuck Norris Jokes</title>
+    <link rel="stylesheet" href="index.css" type="text/css" />
+  </head>
+  <body>
+    <img
+      src="https://api.chucknorris.io/img/chucknorris_logo_coloured_small.png"
+      alt=""
+    />
+    <img src="/IMG_1877.JPG" alt="a photo of me" width="300" height="300" />
+    <form id="joke-form">
+      <button type="submit">Get Joke</button>
+    </form>
+    <div id="joke"></div>
+    <script>
+      const form = document.getElementById("joke-form");
+      const jokeForm = document.getElementById("joke");
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        await getJokes();
+      });
+
+      async function getJokes() {
+        const url = `https://api.chucknorris.io/jokes/random`;
+        const response = await fetch(url);
+        const data = await response.json();
+        jokeForm.innerHTML = data.value;
+      }
+    </script>
+  </body>
+</html>
